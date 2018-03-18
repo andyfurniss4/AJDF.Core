@@ -7,25 +7,18 @@ namespace DAL.EntityFramework.Infrastructure
 {
     public class EFDataContextFactory : Disposable, IDataContextFactory
     {
-        private IEFDatabaseContext dataContextEF;
-        private string connectionString;
+        private IEFDatabaseContext dataContext;
+        private DbContextOptions options;
 
-        public EFDataContextFactory(string connectionString)
+        public EFDataContextFactory(DbContextOptions options)
         {
-            this.connectionString = connectionString;
+            this.options = options;
         }
 
-        public bool HasEFContext => dataContextEF != null;
+        public bool HasEFContext
+            => dataContext != null;
 
         public IDbContext Get()
-        {
-            if (dataContextEF != null)
-                return dataContextEF;
-
-            var optionsBuilder = new DbContextOptionsBuilder();
-            optionsBuilder.UseSqlServer(connectionString);
-
-            return dataContextEF = new EFDatabaseContext(optionsBuilder.Options);
-        }
+            => dataContext ?? (dataContext = new EFDatabaseContext(options));
     }
 }
