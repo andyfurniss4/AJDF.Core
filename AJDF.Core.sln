@@ -8,6 +8,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Base", "DAL\DAL.Base\DAL.Base.csproj", "{53D07136-F9FA-4809-95C0-881CB2364D12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.EntityFramework", "DAL\DAL.EntityFramework\DAL.EntityFramework.csproj", "{906DB4C7-9EC4-4965-BDC3-AD4B2372F4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.EntityFramework", "DAL\DAL.EntityFramework\DAL.EntityFramework.csproj", "{5384EA29-4E18-48AE-AF36-50F298391D54}"
+EndProject
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
