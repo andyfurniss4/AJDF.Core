@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.EntityFramework", "DAL\DAL.EntityFramework\DAL.EntityFramework.csproj", "{906DB4C7-9EC4-4965-BDC3-AD4B2372F4FA}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.EntityFramework", "DAL\DAL.EntityFramework\DAL.EntityFramework.csproj", "{5384EA29-4E18-48AE-AF36-50F298391D54}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{E7C3F87C-A799-431C-B00D-F95087158006}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities\Utilities.csproj", "{0AC505B0-3D7E-43D9-8D40-0D596293334E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
