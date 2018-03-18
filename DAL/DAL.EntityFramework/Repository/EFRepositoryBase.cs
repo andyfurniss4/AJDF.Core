@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace DAL.EntityFramework
 {
@@ -14,14 +13,10 @@ namespace DAL.EntityFramework
         protected IEFDatabaseContext dataContext;
         protected readonly DbSet<T> dbSet;
 
-        protected IDataContextFactory DatabaseFactory { get; private set; }
-        protected IEFDatabaseContext DataContext
-            => dataContext ?? (dataContext = (IEFDatabaseContext)DatabaseFactory.Get());
-
-        protected EFRepositoryBase(IDataContextFactory databaseFactory)
+        protected EFRepositoryBase(IEFDatabaseContext context)
         {
-            this.DatabaseFactory = databaseFactory;
-            this.dbSet = this.DataContext.Set<T>();
+            this.dataContext = context;
+            this.dbSet = this.dataContext.Set<T>();
         }
 
         public T FindOne(Expression<Func<T, bool>> where)

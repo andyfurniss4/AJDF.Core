@@ -1,7 +1,7 @@
 ﻿using DAL.Base.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace DAL.EntityFramework.Infrastructure
 {
@@ -9,5 +9,6 @@ namespace DAL.EntityFramework.Infrastructure
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         EntityEntry Entry(object entity);
+        DatabaseFacade Database { get; }
     }
 }

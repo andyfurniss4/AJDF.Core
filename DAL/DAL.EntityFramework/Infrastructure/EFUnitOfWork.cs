@@ -1,29 +1,25 @@
-﻿using DAL.Base;
-using DAL.Base.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DAL.Base.Infrastructure;
 using System.Threading.Tasks;
 
 namespace DAL.EntityFramework.Infrastructure
 {
     public class EFUnitOfWork : Disposable, IUnitOfWork
     {
-        private IDataContextFactory factory;
+        private IEFDatabaseContext context;
 
-        public EFUnitOfWork(IDataContextFactory factory)
+        public EFUnitOfWork(IEFDatabaseContext context)
         {
-            this.factory = factory;
+            this.context = context;
         }
 
         public void Commit()
         {
-            this.factory.Get().Commit();
+            this.context.Commit();
         }
 
         public async Task CommitAsync()
         {
-            await this.factory.Get().CommitAsync();
+            await this.context.CommitAsync();
         }
     }
 }

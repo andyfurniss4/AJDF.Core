@@ -1,16 +1,15 @@
 ﻿using DAL.Base;
-using Microsoft.EntityFrameworkCore;
+using DAL.EntityFramework.Infrastructure;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace DAL.EntityFramework
 {
     public class EFRepository<TEntity, TKey> : EFRepositoryBase<TEntity>, IRepository<TEntity, TKey> where TEntity : class, IEntity
     {
-        public EFRepository(IDataContextFactory factory) 
-            : base(factory)
+        public EFRepository(IEFDatabaseContext context) 
+            : base(context)
         {
         }
 
