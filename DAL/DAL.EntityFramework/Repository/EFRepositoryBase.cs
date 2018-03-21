@@ -1,4 +1,5 @@
 ﻿using DAL.Base;
+using DAL.Base.Repositories;
 using DAL.EntityFramework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,8 @@ using System.Linq.Expressions;
 
 namespace DAL.EntityFramework
 {
-    public class EFRepositoryBase<T> : IRepositoryBase<T> where T : class, IEntity
+    public class EFRepositoryBase<T> : ICrudRepository<T>, ILinqRepository<T>
+        where T : class, IEntity
     {
         protected IEFDatabaseContext dataContext;
         protected readonly DbSet<T> dbSet;

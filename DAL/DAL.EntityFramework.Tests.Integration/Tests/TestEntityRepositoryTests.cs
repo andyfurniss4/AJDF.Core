@@ -1,5 +1,4 @@
-﻿using DAL.Base;
-using DAL.Base.Infrastructure;
+﻿using DAL.Base.Infrastructure;
 using DAL.EntityFramework.Tests.Integration.Models;
 using DAL.EntityFramework.Tests.Integration.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +10,7 @@ namespace DAL.EntityFramework.Tests.Integration.Tests
     [TestFixture]
     public class TestEntityRepositoryTests : TestBase
     {
-        private IRepository<TestEntity, int> repository;
+        private TestEntityRepository repository;
         private IUnitOfWork unitOfWork;
 
         [OneTimeSetUp]

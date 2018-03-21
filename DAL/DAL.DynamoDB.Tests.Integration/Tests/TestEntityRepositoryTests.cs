@@ -16,7 +16,7 @@ namespace DAL.DynamoDB.Tests.Integration.Tests
     {
         private readonly string testEntityTableName = "TestEntities";
         private IAmazonDynamoDB amazonClient;
-        private IAsyncRepositoryBase<TestEntity> repository;
+        private TestEntityRepository repository;
 
         [OneTimeSetUp]
         public async Task Initialise()

@@ -1,20 +1,14 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
-using Amazon.Runtime;
-using DAL.Base;
+using DAL.Base.Repositories;
 using DAL.DynamoDB.Helpers;
 using DAL.DynamoDB.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.DynamoDB.Repositories
 {
-    public class DynamoDBRepositoryBase<TEntity> : IAsyncRepositoryBase<TEntity> where TEntity : DynamoDBEntity
+    public class DynamoDBRepositoryBase<TEntity> : IAsyncCrudRepository<TEntity> where TEntity : DynamoDBEntity
     {
         protected readonly IDynamoDBContext DataContext;
 
@@ -23,40 +17,10 @@ namespace DAL.DynamoDB.Repositories
             this.DataContext = context;
         }
 
-        public Task<ICollection<TEntity>> FindAsync(Expression<Func<TEntity, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ICollection<TEntity>> FindAsync(Expression<Func<TEntity, bool>> searchPredicate, int pageNumber, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ICollection<TEntity>> FindAsync(Expression<Func<TEntity, bool>> searchPredicate, string columnToOrderBy, int pageNumber, int pageSize, bool orderByDescending = false)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ICollection<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<ICollection<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> where)
-        {
-            //return await this.DataContext.QueryAsync(...);  // Use LinqToDynamoDB package here
-            throw new NotImplementedException();
+            var coniditions = new List<ScanCondition>();
+            return await DynamoDBHelper.AttemptOperation(async () => await this.DataContext.ScanAsync<TEntity>(coniditions).GetRemainingAsync());
         }
 
         public async Task<bool> InsertAsync(TEntity item)
